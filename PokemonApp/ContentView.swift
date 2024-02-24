@@ -16,6 +16,8 @@ struct ContentView: View {
 //        animation: .default)
 //    private var items: FetchedResults<Item>
 
+    @StateObject var viewModel = PokemonViewModel()
+    
     var body: some View {
 //        NavigationView {
 //            List {
