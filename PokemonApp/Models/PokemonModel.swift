@@ -22,7 +22,20 @@ struct Pokemon: Codable, Identifiable, Equatable {
 }
 
 struct DetailPokemon: Codable {
-    let type: String
+    let types: [PokemonTypeSlot]
     let weight: Int
     let height: Int
+    
+    
+}
+
+struct PokemonTypeSlot: Codable {
+    var id: Int { slot }
+    let slot: Int
+    let type: PokemonType
+}
+
+struct PokemonType: Codable {
+    let name: String
+    let url: String
 }

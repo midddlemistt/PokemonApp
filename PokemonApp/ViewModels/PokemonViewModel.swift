@@ -35,7 +35,7 @@ final class PokemonViewModel: ObservableObject {
     func getDetails(pokemon:Pokemon) {
         let id = getPokemonIndex(pokemon: pokemon)
         
-        self.pokemonDetails = DetailPokemon(type: "0", weight: 0, height: 0)
+        self.pokemonDetails = DetailPokemon(types: [], weight: 0, height: 0)
         
         pokemonManager.getDetailedPokemon(id: id) {data in
             DispatchQueue.main.async {
@@ -44,10 +44,16 @@ final class PokemonViewModel: ObservableObject {
         }
     }
     
-    func format(value:Int) -> String {
+    func formatWeight(value:Int) -> String {
         let doubleValue = Double(value)
         let string = String(format: "%.2f", doubleValue / 10)
         
+        return string
+    }
+    
+    func formatHeight(value:Int) -> String {
+        let value = Double(value)
+        let string = String(value * 10)
         return string
     }
     
