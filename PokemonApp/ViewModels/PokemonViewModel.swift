@@ -22,8 +22,21 @@ final class PokemonViewModel: ObservableObject {
     }
     
     init() {
-        self.pokemonList = pokemonManager.getPokemon()
+        fetchPokemon()
     }
+    
+    func fetchPokemon(offset: Int = 0) {
+            pokemonManager.getPokemon(offset: offset) { [weak self] pokemon in
+                guard let self = self else { return }
+                DispatchQueue.main.async {
+                    if let pokemon = pokemon, !pokemon.isEmpty {
+                        self.pokemonList.append(contentsOf: pokemon)
+                        let nextOffset = offset + pokemon.count
+                        self.fetchPokemon(offset: nextOffset)
+                    }
+                }
+            }
+        }
     
     func getPokemonIndex(pokemon:Pokemon) -> Int {
         if let index = self.pokemonList.firstIndex(of: pokemon) {

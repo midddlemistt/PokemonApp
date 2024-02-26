@@ -12,7 +12,7 @@ struct ContentView: View {
     @StateObject var viewModel = PokemonViewModel()
     
     let adaptiveColumns = [
-        GridItem(.adaptive(minimum: 180))
+        GridItem(.adaptive(minimum: 150))
     ]
     
     var body: some View {

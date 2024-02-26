@@ -27,7 +27,13 @@ extension Bundle {
         return loadedData
     }
     
-    func fetchData<T: Decodable>(url: String, model: T.Type, completion:@escaping(T) -> (), failure:@escaping(Error) -> ()) {
+    func fetchData<T: Decodable>(url: String, model: T.Type, offset: Int = 0, completion:@escaping(T) -> (), failure:@escaping(Error) -> ()) {
+        var urlString = url
+        
+        if offset > 0 {
+            urlString += "?offset=\(offset)"
+        }
+        
         guard let url = URL(string: url) else { return }
         
         URLSession.shared.dataTask(with: url) { (data, response, error) in
