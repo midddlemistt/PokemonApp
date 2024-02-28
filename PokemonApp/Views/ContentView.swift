@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import CoreData
 
 struct ContentView: View {
     @StateObject var viewModel = PokemonViewModel()
@@ -30,7 +29,7 @@ struct ContentView: View {
                 .navigationTitle("Pokedex")
                 .navigationBarTitleDisplayMode(.inline)
             }
-            .background(Color(.red))
+            .background(LinearGradient(gradient: Gradient(colors: [.red, .gray]), startPoint: .top, endPoint: .bottom))
             .searchable(text: $viewModel.searchText)
             
         }
